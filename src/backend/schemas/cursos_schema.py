@@ -31,3 +31,4 @@ class Curso(CursoBase):
     """Curso almacenado."""
 
     id: int
+    promedio_anterior: float = Field(..., ge=0, le=20)

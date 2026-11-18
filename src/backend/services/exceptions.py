@@ -1,22 +1,23 @@
-class CursoNotFoundError(Exception):
-    def __init__(self, curso_id: int) -> None:
-        self.curso_id = curso_id
-        super().__init__(f"No existe un curso con id {curso_id}.")
+class UsuarioAlreadyExistsError(Exception):
+    def __init__(self, email: str) -> None:
+        super().__init__(f"El correo electrónico '{email}' ya se encuentra registrado.")
 
 
-class NotaNotFoundError(Exception):
-    def __init__(self, nota_id: int) -> None:
-        self.nota_id = nota_id
-        super().__init__(f"No existe una nota con id {nota_id}.")
+class InvalidCredentialsError(Exception):
+    def __init__(self, message: str = "Email o contraseña incorrectos.") -> None:
+        super().__init__(message)
 
 
-class AlertaNotFoundError(Exception):
-    def __init__(self, alerta_id: int) -> None:
-        self.alerta_id = alerta_id
-        super().__init__(f"No existe una alerta con id {alerta_id}.")
+class NotFoundError(Exception):
+    def __init__(self, message: str) -> None:
+        super().__init__(message)
 
 
-class CursoInvalidoError(Exception):
-    def __init__(self, curso_id: int) -> None:
-        self.curso_id = curso_id
-        super().__init__(f"El curso con id {curso_id} no existe.")
+class ForbiddenError(Exception):
+    def __init__(self, message: str = "No autorizado.") -> None:
+        super().__init__(message)
+
+
+class BusinessRuleError(Exception):
+    def __init__(self, message: str) -> None:
+        super().__init__(message)
