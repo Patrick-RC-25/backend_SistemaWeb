@@ -11,7 +11,10 @@ class AlertaRepository:
                 titulo="Parcial de Sistemas Operativos",
                 curso_nombre="Sistemas Operativos",
                 fecha="Mañana · 8:00 a. m.",
-                detalle="Tu promedio actual es 13.8. Necesitas 16.2 en este parcial.",
+                detalle=(
+                    "Tu promedio actual es 13.8. Necesitas 16.2 en este parcial "
+                    "para acercarte a tu meta."
+                ),
                 atendida=False,
             ),
             2: Alerta(
@@ -21,7 +24,10 @@ class AlertaRepository:
                 titulo="Entrega del proyecto SQL",
                 curso_nombre="Bases de Datos",
                 fecha="En 3 días · 11:59 p. m.",
-                detalle="La entrega representa el 25% del curso.",
+                detalle=(
+                    "La entrega representa el 25% del curso. "
+                    "Aún no registras una sesión de revisión."
+                ),
                 atendida=False,
             ),
             3: Alerta(
@@ -31,21 +37,40 @@ class AlertaRepository:
                 titulo="Curso con tendencia descendente",
                 curso_nombre="Matemáticas Superiores",
                 fecha="Revisión recomendada esta semana",
-                detalle="Tu nota bajó 0.8 puntos en dos evaluaciones.",
+                detalle=(
+                    "Tu nota bajó 0.8 puntos en dos evaluaciones. "
+                    "Prioriza funciones vectoriales y series."
+                ),
                 atendida=False,
             ),
             4: Alerta(
                 id=4,
+                tipo="evaluacion",
+                prioridad="sugerencia",
+                titulo="Quiz de estructuras de datos",
+                curso_nombre="Algoritmos y Estructuras",
+                fecha="Martes · 10:00 a. m.",
+                detalle=(
+                    "Vas 0.5 puntos por encima de tu objetivo. "
+                    "Un repaso de 45 minutos debería ser suficiente."
+                ),
+                atendida=False,
+            ),
+            5: Alerta(
+                id=5,
                 tipo="tarea",
                 prioridad="sugerencia",
                 titulo="Lectura de paper de redes",
                 curso_nombre="Redes de Computadoras",
                 fecha="Viernes · 23:59",
-                detalle="Resumen de 2 páginas del paper asignado.",
+                detalle=(
+                    "Resumen de 2 páginas del paper asignado. "
+                    "Puedes hacerlo en una sesión corta."
+                ),
                 atendida=True,
             ),
         }
-        self._siguiente_id = 5
+        self._siguiente_id = 6
 
     def listar(self) -> list[Alerta]:
         return list(self._alertas.values())

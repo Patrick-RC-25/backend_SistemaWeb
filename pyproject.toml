@@ -1,14 +1,15 @@
 [project]
 name = "backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "RandomStudy — SQL Server + Argon2id + JWT (sin ORM)"
 readme = "README.md"
-authors = [
-    { name = "Patrick-RC-25", email = "61278832@continental.edu.pe" }
-]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
-    "fastapi>=0.162.4",
+    "argon2-cffi>=25.1.0",
+    "fastapi>=0.162.0",
+    "pyjwt>=2.15.1",
+    "pyodbc>=5.5.0",
+    "python-dotenv>=1.2.4",
     "uvicorn>=0.54.0",
 ]
 
@@ -16,5 +17,5 @@ dependencies = [
 backend = "backend:main"
 
 [build-system]
-requires = ["uv_build>=0.13.7,<0.14.0"]
+requires = ["uv_build>=0.12.19,<0.13.0"]
 build-backend = "uv_build"

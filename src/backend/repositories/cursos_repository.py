@@ -10,6 +10,7 @@ class CursoRepository:
                 codigo="MAT-301",
                 creditos=4,
                 promedio=14.2,
+                promedio_anterior=15.0,
                 docente="Ing. Rosa Quispe",
             ),
             2: Curso(
@@ -18,6 +19,7 @@ class CursoRepository:
                 codigo="SIS-210",
                 creditos=4,
                 promedio=17.5,
+                promedio_anterior=17.0,
                 docente="Mg. Luis Huamán",
             ),
             3: Curso(
@@ -26,6 +28,7 @@ class CursoRepository:
                 codigo="SIS-220",
                 creditos=3,
                 promedio=16.1,
+                promedio_anterior=15.8,
                 docente="Ing. Ana Cerrón",
             ),
             4: Curso(
@@ -34,6 +37,7 @@ class CursoRepository:
                 codigo="SIS-230",
                 creditos=4,
                 promedio=13.8,
+                promedio_anterior=14.5,
                 docente="Dr. Pedro Vargas",
             ),
             5: Curso(
@@ -42,6 +46,7 @@ class CursoRepository:
                 codigo="SIS-240",
                 creditos=3,
                 promedio=15.9,
+                promedio_anterior=15.5,
                 docente="Ing. María Torres",
             ),
             6: Curso(
@@ -50,6 +55,7 @@ class CursoRepository:
                 codigo="SIS-250",
                 creditos=4,
                 promedio=16.4,
+                promedio_anterior=16.0,
                 docente="Mg. Javier Ríos",
             ),
         }
@@ -65,15 +71,24 @@ class CursoRepository:
         return curso_id in self._cursos
 
     def agregar(self, datos: CursoCreate) -> Curso:
-        curso = Curso(id=self._siguiente_id, **datos.model_dump())
+        curso = Curso(
+            id=self._siguiente_id,
+            promedio_anterior=datos.promedio,
+            **datos.model_dump(),
+        )
         self._cursos[curso.id] = curso
         self._siguiente_id += 1
         return curso
 
     def actualizar(self, curso_id: int, datos: CursoUpdate) -> Curso | None:
-        if curso_id not in self._cursos:
+        anterior = self._cursos.get(curso_id)
+        if anterior is None:
             return None
-        actualizado = Curso(id=curso_id, **datos.model_dump())
+        actualizado = Curso(
+            id=curso_id,
+            promedio_anterior=anterior.promedio,
+            **datos.model_dump(),
+        )
         self._cursos[curso_id] = actualizado
         return actualizado
 

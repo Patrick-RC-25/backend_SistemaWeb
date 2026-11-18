@@ -24,6 +24,15 @@ class NotaRepository:
             ),
             3: Nota(
                 id=3,
+                curso_id=1,
+                nombre="Práctica 2",
+                puntaje=14.0,
+                peso=15.0,
+                fecha="2026-10-20",
+                tipo="tarea",
+            ),
+            4: Nota(
+                id=4,
                 curso_id=2,
                 nombre="Quiz 1",
                 puntaje=18.0,
@@ -31,8 +40,26 @@ class NotaRepository:
                 fecha="2026-09-18",
                 tipo="quiz",
             ),
-            4: Nota(
-                id=4,
+            5: Nota(
+                id=5,
+                curso_id=2,
+                nombre="Proyecto parcial",
+                puntaje=17.0,
+                peso=30.0,
+                fecha="2026-10-15",
+                tipo="proyecto",
+            ),
+            6: Nota(
+                id=6,
+                curso_id=4,
+                nombre="Laboratorio 1",
+                puntaje=14.0,
+                peso=20.0,
+                fecha="2026-09-25",
+                tipo="tarea",
+            ),
+            7: Nota(
+                id=7,
                 curso_id=4,
                 nombre="Parcial 1",
                 puntaje=13.0,
@@ -41,7 +68,7 @@ class NotaRepository:
                 tipo="examen",
             ),
         }
-        self._siguiente_id = 5
+        self._siguiente_id = 8
 
     def listar(self) -> list[Nota]:
         return list(self._notas.values())
