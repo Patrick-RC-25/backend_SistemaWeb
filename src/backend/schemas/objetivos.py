@@ -1,5 +1,4 @@
 from datetime import date
-from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -12,7 +11,6 @@ class ObjetivoCreate(BaseModel):
     descripcion: str | None = Field(None, max_length=500)
     fecha_inicio: date
     fecha_limite: date | None = None
-    progreso: float = Field(default=0, ge=0, le=100)
 
 
 class ObjetivoUpdate(BaseModel):
@@ -23,8 +21,6 @@ class ObjetivoUpdate(BaseModel):
     descripcion: str | None = Field(None, max_length=500)
     fecha_inicio: date
     fecha_limite: date | None = None
-    progreso: float = Field(..., ge=0, le=100)
-    estado: Literal["pendiente", "en_progreso", "completado", "cancelado"] = "pendiente"
 
 
 class Objetivo(BaseModel):
@@ -37,3 +33,5 @@ class Objetivo(BaseModel):
     fecha_limite: date | None = None
     progreso: float
     estado: str
+    total_tareas: int = 0
+    tareas_completadas: int = 0
