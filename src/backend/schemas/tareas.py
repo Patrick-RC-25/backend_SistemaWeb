@@ -8,6 +8,7 @@ class TareaCreate(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True)
 
     id_curso: int | None = None
+    id_objetivo: int | None = None
     titulo: str = Field(..., min_length=2, max_length=150)
     descripcion: str | None = Field(None, max_length=500)
     fecha_vencimiento: datetime | None = None
@@ -19,6 +20,7 @@ class TareaUpdate(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True)
 
     id_curso: int | None = None
+    id_objetivo: int | None = None
     titulo: str = Field(..., min_length=2, max_length=150)
     descripcion: str | None = Field(None, max_length=500)
     fecha_vencimiento: datetime | None = None
@@ -30,6 +32,7 @@ class Tarea(BaseModel):
     id_tarea: int
     id_usuario: int
     id_curso: int | None = None
+    id_objetivo: int | None = None
     titulo: str
     descripcion: str | None = None
     fecha_vencimiento: datetime | None = None

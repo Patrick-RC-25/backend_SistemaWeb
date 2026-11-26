@@ -17,7 +17,9 @@ class EvaluacionService:
         if not curso_repository.pertenece_a_usuario(datos.id_curso, id_usuario):
             raise ForbiddenError("El curso no pertenece al usuario.")
         total = self._repository.ponderacion_total(datos.id_curso)
-        if total + datos.ponderacion > 100.0001:
+        if total >= 99.995:
+            raise BusinessRuleError("Los pesos ya suman 100 %. No se pueden registrar más evaluaciones.")
+        if total + float(datos.ponderacion) > 100.0001:
             raise BusinessRuleError(f"La suma de ponderaciones superaría el 100 % (actual: {total} %).")
         return self._repository.agregar(datos)
 
@@ -30,7 +32,7 @@ class EvaluacionService:
         if not curso_repository.pertenece_a_usuario(ev.id_curso, id_usuario):
             raise ForbiddenError("No autorizado.")
         total = self._repository.ponderacion_total(ev.id_curso, excluir_id=id_evaluacion)
-        if total + datos.ponderacion > 100.0001:
+        if total + float(datos.ponderacion) > 100.0001:
             raise BusinessRuleError(f"La suma de ponderaciones superaría el 100 % (actual: {total} %).")
         actualizada = self._repository.actualizar(id_evaluacion, datos)
         if actualizada is None:

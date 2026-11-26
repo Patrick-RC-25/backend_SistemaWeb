@@ -1,4 +1,4 @@
-# RandomStudy Backend
+# CarlitoApp Backend
 
 FastAPI + SQL Server mediante `pyodbc`, sin ORM. La autenticación utiliza contraseñas con Argon2id y tokens JWT.
 

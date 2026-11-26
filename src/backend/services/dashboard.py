@@ -32,7 +32,7 @@ class DashboardService:
             if t.fecha_vencimiento is not None:
                 necesita.append(f"Tarea pendiente «{t.titulo}» (prioridad {t.prioridad}).")
         for o in objetivos_act:
-            if o.progreso < 50:
+            if o.total_tareas > 0 and o.progreso < 50:
                 necesita.append(f"Objetivo «{o.titulo}» con progreso {o.progreso}%.")
 
         return DashboardResumen(
@@ -45,7 +45,7 @@ class DashboardService:
             cursos=cursos,
             tareas_proximas=tareas_pend[:5],
             sesiones_hoy_lista=sesiones_hoy,
-            objetivos=objetivos_act[:5],
+            objetivos=objetivos_act[:10] or [o for o in objetivos if o.estado == "completado"][:1],
             alertas_recientes=alertas_no_leidas[:5],
             necesita_atencion=necesita[:8],
         )
